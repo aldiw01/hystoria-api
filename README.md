@@ -1,19 +1,19 @@
-# [API] Hysteria BOT
+# [API] Hystoria BOT
 This project is under development, feel free to contact me for question.
 
 ## Installation
 
 #### Clone the repo
 ``` bash
-$ git clone https://github.com/aldiw01/hysteria-api.git
+$ git clone https://github.com/aldiw01/hystoria-api.git
 ```
 
 #### Go into app's directory
 ``` bash
-$ cd hysteria-api
+$ cd hystoria-api
 ```
 
-#### Import database hysteria_bot.sql into mySQL server
+#### Import database hystoria_bot.sql into mySQL server
 
 #### Install node and npm
 For windows version, you can get it here -> https://nodejs.org/en/download/ 
@@ -27,7 +27,6 @@ $ npm install
 
 #### Primary
 ```
-APP_BOT_TOKEN
 APP_DATABASE_DB
 APP_DATABASE_HOST
 APP_DATABASE_PASSWORD

@@ -1,5 +1,5 @@
 {
-  "name": "hysteria-api",
+  "name": "hystoria-api",
   "version": "0.1.0",
   "description": "API - Hysteria BOT",
   "author": "Aldi Wiranata",
@@ -7,7 +7,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/aldiw01/hysteria-api.git"
+    "url": "https://github.com/aldiw01/hystoria-api.git"
   },
   "dependencies": {
     "dotenv": "^8.0.0",
@@ -16,7 +16,7 @@
     "nodemailer": "^6.1.1"
   },
   "bugs": {
-    "url": "https://github.com/aldiw01/hysteria-api/issues"
+    "url": "https://github.com/aldiw01/hystoria-api/issues"
   },
   "scripts": {
     "start": "node src/index",
