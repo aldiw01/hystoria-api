@@ -1,13 +1,16 @@
 {
   "name": "hystoria-api",
   "version": "0.1.0",
-  "description": "API - Hysteria BOT",
+  "description": "API - Hysteria",
   "author": "Aldi Wiranata",
   "copyright": "Copyright 2019 - Aldi Wiranata",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/aldiw01/hystoria-api.git"
+  },
+  "engines": {
+    "node": "11.10.0"
   },
   "dependencies": {
     "dotenv": "^8.0.0",

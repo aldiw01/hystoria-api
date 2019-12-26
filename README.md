@@ -1,4 +1,4 @@
-# [API] Hystoria BOT
+# [API] Hystoria
 This project is under development, feel free to contact me for question.
 
 ## Installation
