@@ -49,7 +49,8 @@ module.exports = {
 					first_name: items[1],
 					last_name: items[2],
 					username: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -75,7 +76,8 @@ module.exports = {
 					first_name: items[1],
 					last_name: items[2],
 					username: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -88,12 +90,12 @@ module.exports = {
 	},
 	newUser: function (req, res) {
 		const waktu = new Date().toISOString();
-		var request = [req.id, req.first_name, req.last_name, req.username, waktu];
+		var request = [req.id, req.first_name, req.last_name, req.username, waktu, waktu];
 		if (request.includes(undefined) || request.includes("")) {
 			res.send({ message: 'Bad Request: Parameters cannot empty.' });
 			return
 		}
-		c.query("INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `created`) VALUES (?, ?, ?, ?, ?)", request, { metadata: true, useArray: true }, function (err, rows) {
+		c.query("INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `created`, `updated`) VALUES (?, ?, ?, ?, ?, ?)", request, { metadata: true, useArray: true }, function (err, rows) {
 			if (err) {
 				res.status(500).send({ message: "Error 500: Internal Server Error" });
 				console.log(err);
@@ -163,7 +165,8 @@ module.exports = {
 					user_id: items[1],
 					nominal: items[2],
 					description: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -189,7 +192,8 @@ module.exports = {
 					user_id: items[1],
 					nominal: items[2],
 					description: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -215,7 +219,8 @@ module.exports = {
 					user_id: items[1],
 					nominal: items[2],
 					description: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -228,12 +233,12 @@ module.exports = {
 	},
 	newEarning: function (req, res) {
 		const waktu = new Date().toISOString();
-		var request = [req.user_id, req.nominal, req.description, waktu];
+		var request = [req.user_id, req.nominal, req.description, waktu, waktu];
 		if (request.includes(undefined) || request.includes("")) {
 			res.send({ message: 'Bad Request: Parameters cannot empty.' });
 			return
 		}
-		c.query("INSERT INTO `earnings` (`user_id`, `nominal`, `description`, `created`) VALUES (?, ?, ?, ?)", request, { metadata: true, useArray: true }, function (err, rows) {
+		c.query("INSERT INTO `earnings` (`user_id`, `nominal`, `description`, `created`, `updated`) VALUES (?, ?, ?, ?, ?)", request, { metadata: true, useArray: true }, function (err, rows) {
 			if (err) {
 				res.status(500).send({ message: "Error 500: Internal Server Error" });
 				console.log(err);
@@ -250,12 +255,13 @@ module.exports = {
 		c.end();
 	},
 	updateEarningNominal: function (req, res) {
-		var request = [req.body.nominal, req.params.id, req.body.user_id];
+		const waktu = new Date().toISOString();
+		var request = [req.body.nominal, waktu, req.params.id, req.body.user_id];
 		if (request.includes(undefined) || request.includes("")) {
 			res.send({ message: 'Bad Request: Parameters cannot empty.' });
 			return
 		}
-		c.query("UPDATE `earnings` SET `nominal`=? WHERE `id`=? AND `user_id`=?", request, { metadata: true, useArray: true }, function (err, rows) {
+		c.query("UPDATE `earnings` SET `nominal`=?, `updated`=? WHERE `id`=? AND `user_id`=?", request, { metadata: true, useArray: true }, function (err, rows) {
 			if (err) {
 				res.status(500).send({ message: "Error 500: Internal Server Error" });
 				console.log(err);
@@ -281,12 +287,13 @@ module.exports = {
 		c.end();
 	},
 	updateEarningDescription: function (req, res) {
-		var request = [req.body.description, req.params.id, req.body.user_id];
+		const waktu = new Date().toISOString();
+		var request = [req.body.description, waktu, req.params.id, req.body.user_id];
 		if (request.includes(undefined) || request.includes("")) {
 			res.send({ message: 'Bad Request: Parameters cannot empty.' });
 			return
 		}
-		c.query("UPDATE `earnings` SET `description`=? WHERE `id`=? AND `user_id`=?", request, { metadata: true, useArray: true }, function (err, rows) {
+		c.query("UPDATE `earnings` SET `description`=?, `updated`=? WHERE `id`=? AND `user_id`=?", request, { metadata: true, useArray: true }, function (err, rows) {
 			if (err) {
 				res.status(500).send({ message: "Error 500: Internal Server Error" });
 				console.log(err);
@@ -365,7 +372,8 @@ module.exports = {
 					user_id: items[1],
 					nominal: items[2],
 					description: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -391,7 +399,8 @@ module.exports = {
 					user_id: items[1],
 					nominal: items[2],
 					description: items[3],
-					created: items[4]
+					created: items[4],
+					updated: items[5]
 				});
 			});
 			if (data.length < 1) {
@@ -404,12 +413,12 @@ module.exports = {
 	},
 	newExpenditure: function (req, res) {
 		const waktu = new Date().toISOString();
-		var request = [req.user_id, req.nominal, req.description, waktu];
+		var request = [req.user_id, req.nominal, req.description, waktu, waktu];
 		if (request.includes(undefined) || request.includes("")) {
 			res.send({ message: 'Bad Request: Parameters cannot empty.' });
 			return
 		}
-		c.query("INSERT INTO `expenditures` (`user_id`, `nominal`, `description`, `created`) VALUES (?, ?, ?, ?)", request, { metadata: true, useArray: true }, function (err, rows) {
+		c.query("INSERT INTO `expenditures` (`user_id`, `nominal`, `description`, `created`, `updated`) VALUES (?, ?, ?, ?, ?)", request, { metadata: true, useArray: true }, function (err, rows) {
 			if (err) {
 				res.status(500).send({ message: "Error 500: Internal Server Error" });
 				console.log(err);
