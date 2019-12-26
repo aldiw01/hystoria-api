@@ -17,6 +17,38 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const USER_SECRET = process.env.APP_TOKEN_USER_SECRET;
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// LOGIN ROUTE
+
+app.post('/api/loginUser', (req, res) => {
+	db.cekLoginUser(req.body, function (err, data) {
+		if (data.length === 1) {
+			//If all credentials are correct do this
+			let token = jwt.sign({
+				id: data[0].id,
+				first_name: data[0].first_name,
+				last_name: data[0].last_name,
+				username: data[0].username,
+				created: data[0].created
+			}, USER_SECRET, { expiresIn: 43210 }); // Sigining the token
+			res.json({
+				success: true,
+				err: null,
+				token: token
+			});
+		}
+		else {
+			res.json({
+				success: false,
+				token: null,
+				err: 'Username or password is incorrect'
+			});
+		}
+	});
+});
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // User API
 
@@ -47,12 +79,24 @@ app.get('/api/earning', (req, res) => {
 	db.getEarningAll(req.body, res);
 })
 
+app.get('/api/earning5', (req, res) => {
+	db.getEarningLast5(req.body, res);
+})
+
 app.get('/api/earning/:id', (req, res) => {
 	db.getEarning(req.params, res);
 })
 
 app.post('/api/earning', (req, res) => {
 	db.newEarning(req.body, res);
+})
+
+app.put('/api/earning/nominal/:id', (req, res) => {
+	db.updateEarningNominal(req, res);
+})
+
+app.put('/api/earning/description/:id', (req, res) => {
+	db.updateEarningDescription(req, res);
 })
 
 app.delete('/api/earning/:id', (req, res) => {
